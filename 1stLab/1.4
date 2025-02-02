@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Читаем количество дорог
+        int n = sc.nextInt();
+
+        // Переменные, где будем хранить результат:
+        // лучший номер дороги (1-based) и максимальную из "минимальных высот"
+        int bestRoadIndex = 1;
+        int bestMinHeight = -1;
+
+        for (int i = 1; i <= n; i++) {
+            // Количество туннелей на текущей дороге
+            int tunnelCount = sc.nextInt();
+
+            // Временная переменная для хранения "минимальной высоты" на текущей дороге
+            // Изначально можно поставить очень большое число
+            int currentMinHeight = Integer.MAX_VALUE;
+
+            // Считываем высоты туннелей и ищем минимум
+            for (int j = 0; j < tunnelCount; j++) {
+                int height = sc.nextInt();
+                if (height < currentMinHeight) {
+                    currentMinHeight = height;
+                }
+            }
+
+            // Сравниваем найденный минимум с лучшим результатом
+            if (currentMinHeight > bestMinHeight) {
+                bestMinHeight = currentMinHeight;
+                bestRoadIndex = i;
+            }
+        }
+
+        // Выводим номер лучшей дороги и её "минимальную высоту"
+        System.out.println(bestRoadIndex + " " + bestMinHeight);
+
+        sc.close();
+    }
+}
