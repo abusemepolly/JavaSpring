@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Считываем одно натуральное число n
+        int n = sc.nextInt();
+
+        // Счётчик шагов
+        int steps = 0;
+
+        // Выполняем преобразования до тех пор, пока n не станет равно 1
+        while (n != 1) {
+            // Если n чётное, делим его на 2
+            if (n % 2 == 0) {
+                n /= 2;
+            }
+            // Иначе (если n нечётное), делаем замену на 3n + 1
+            else {
+                n = 3 * n + 1;
+            }
+
+            // Увеличиваем счётчик шагов после каждого преобразования
+            steps++;
+        }
+
+        // Выводим количество шагов
+        System.out.println(steps);
+
+        sc.close();
+    }
+}
