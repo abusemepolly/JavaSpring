@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Считываем положительное трёхзначное число
+        int number = sc.nextInt();
+
+        // Выделяем цифры
+        int a = number / 100;         // Сотни
+        int b = (number / 10) % 10;   // Десятки
+        int c = number % 10;         // Единицы
+
+        // Сумма и произведение цифр
+        int sum = a + b + c;
+        int product = a * b * c;
+
+        // Проверяем, чётны ли сумма и произведение
+        if (sum % 2 == 0 && product % 2 == 0) {
+            System.out.println("Число является \"дважды чётным\".");
+        } else {
+            System.out.println("Число не является \"дважды чётным\".");
+        }
+
+        sc.close();
+    }
+}
