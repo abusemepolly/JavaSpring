@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Считываем количество чисел n
+        int n = sc.nextInt();
+
+        // Переменная для накопления результата
+        int result = 0;
+
+        // Считываем n чисел и чередуем знак сложения/вычитания
+        for (int i = 0; i < n; i++) {
+            int x = sc.nextInt();
+
+            // Если индекс чётный, прибавляем
+            // Если индекс нечётный, вычитаем
+            if (i % 2 == 0) {
+                result += x;
+            } else {
+                result -= x;
+            }
+        }
+
+        System.out.println(result);
+
+        sc.close();
+    }
+}
