@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Считываем координаты клада
+        int treasureX = sc.nextInt();
+        int treasureY = sc.nextInt();
+        sc.nextLine();  // Переходим на следующую строку
+
+        // Текущие координаты (начинаем в (0,0))
+        int currentX = 0;
+        int currentY = 0;
+
+        // Счётчик инструкций
+        int stepsCount = 0;
+
+        while (true) {
+            // Считываем направление (или "стоп")
+            String direction = sc.nextLine().trim();
+            // Если встречаем "стоп", завершаем чтение
+            if (direction.equals("стоп")) {
+                break;
+            }
+
+            // Считываем количество шагов
+            int distance = sc.nextInt();
+            sc.nextLine();  // Считываем перевод строки, чтобы корректно перейти к следующему указанию
+
+            stepsCount++;
+
+            // Обновляем координаты в зависимости от направления
+            switch (direction) {
+                case "север":   // y увеличивается
+                    currentY += distance;
+                    break;
+                case "юг":      // y уменьшается
+                    currentY -= distance;
+                    break;
+                case "восток":  // x увеличивается
+                    currentX += distance;
+                    break;
+                case "запад":   // x уменьшается
+                    currentX -= distance;
+                    break;
+                default:
+                    // По условию задачи здесь могут быть только эти направления + "стоп"
+                    // Можно добавить обработку ошибки, но в задаче не требуется.
+                    break;
+            }
+
+            // Проверяем, достигли ли мы клада
+            if (currentX == treasureX && currentY == treasureY) {
+                System.out.println(stepsCount);
+                return; // Завершаем программу, как только клад найден
+            }
+        }
+
+        // По условию задачи карта гарантированно приводит к кладу,
+        // поэтому сюда программа вряд ли должна доходить.
+        // Но на всякий случай можно вывести stepsCount или что-то другое.
+    }
+}
