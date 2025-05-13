@@ -1,0 +1,39 @@
+import java.util.Arrays;
+
+class ArrayUtils {
+    /**
+     * Возвращает самую длинную подстроку без повторяющихся символов.
+     * @param s входная строка
+     * @return подстрока макс. длины с уникальными символами
+     */
+    public static String longestUniqueSubstring(String s) {
+        if (s == null || s.isEmpty()) {
+            return ""; // пустая строка для null или пустого ввода
+        }
+        int[] lastIndex = new int[256]; // массив для хранения позиций символов
+        Arrays.fill(lastIndex, -1);
+        int maxLen = 0;
+        int start = 0;
+        int maxStart = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (lastIndex[c] >= start) {
+                // повтор символа внутри окна — двигаем начало
+                start = lastIndex[c] + 1;
+            }
+            lastIndex[c] = i; // обновляем позицию символа
+            if (i - start + 1 > maxLen) {
+                maxLen = i - start + 1;
+                maxStart = start;
+            }
+        }
+        return s.substring(maxStart, maxStart + maxLen);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        String result = ArrayUtils.longestUniqueSubstring("abrkaabcdefghijjxxx");
+        System.out.println("Результат: " + result);
+    }
+}
