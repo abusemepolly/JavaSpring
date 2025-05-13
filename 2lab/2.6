@@ -1,0 +1,34 @@
+class ArrayUtils {
+    /**
+     * Считает сумму всех элементов в двумерном массиве.
+     * @param matrix входная матрица
+     * @return сумма элементов; 0 для пустой матрицы или null
+     */
+    public static int sum2D(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (int[] row : matrix) {
+            if (row != null) {
+                for (int val : row) {
+                    sum += val;
+                }
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5},
+                null,
+                {6}
+        };
+        int total = ArrayUtils.sum2D(matrix);
+        System.out.println("Сумма всех элементов: " + total);
+    }
+}
