@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+class ArrayUtils {
+    /**
+     * Возвращает массив из максимальных элементов каждой строки матрицы.
+     * @param matrix входная матрица
+     * @return массив максимумов по строкам; пустой массив для null или пустой матрицы
+     */
+    public static int[] maxInRows(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) {
+            return new int[0];
+        }
+        int rows = matrix.length;
+        int[] result = new int[rows];
+        for (int i = 0; i < rows; i++) {
+            int[] row = matrix[i];
+            if (row == null || row.length == 0) {
+                result[i] = Integer.MIN_VALUE; // или другое значение
+            } else {
+                int max = row[0];
+                for (int val : row) {
+                    if (val > max) {
+                        max = val;
+                    }
+                }
+                result[i] = max;
+            }
+        }
+        return result;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {3, 5, 1},
+                {7, 2},
+                {},
+                null,
+                {4, 4, 4}
+        };
+
+        // Поиск максимальных элементов в каждой строке
+        int[] maxValues = ArrayUtils.maxInRows(matrix);
+        System.out.println("Максимумы по строкам: " + Arrays.toString(maxValues));
+    }
+}
