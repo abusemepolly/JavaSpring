@@ -1,0 +1,42 @@
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
+
+class ArrayUtils {
+    /**
+     * Ищет два элемента в массиве, сумма которых равна target.
+     * @param arr входной массив
+     * @param target требуемая сумма
+     * @return массив из двух чисел или null, если пара не найдена
+     */
+    public static int[] findPairWithSum(int[] arr, int target) {
+        if (arr == null || arr.length < 2) {
+            return null; // недостаточно элементов
+        }
+        Set<Integer> seen = new HashSet<>();
+        for (int value : arr) {
+            int complement = target - value;
+            if (seen.contains(complement)) {
+                // нашли подходящую пару
+                return new int[]{complement, value};
+            }
+            seen.add(value);
+        }
+        return null; // пара не найдена
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {2, 7, 11, 15};
+        int target = 9;
+
+        // Поиск пары с заданной суммой
+        int[] pair = ArrayUtils.findPairWithSum(arr, target);
+        if (pair != null) {
+            System.out.println("Найдена пара: " + Arrays.toString(pair));
+        } else {
+            System.out.println("Пара с суммой " + target + " не найдена.");
+        }
+    }
+}
